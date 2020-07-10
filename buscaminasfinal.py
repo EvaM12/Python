@@ -40,7 +40,7 @@ class prueba():
 def menu():
     ''''Imprime en pantalla el menu con sus opciones, utiliza la variable modo (cuyo valor le da el usuario)'''
     print ("Menú \n----------")
-    print " 1. Principiante (9x9, 10 minas) \n 2. Intermedio (16x16, 40 minas) \n 3. Experto (16x30, 99 minas) \n 4. Leer de fichero \n 5. Salir"
+    print (" 1. Principiante (9x9, 10 minas) \n 2. Intermedio (16x16, 40 minas) \n 3. Experto (16x30, 99 minas) \n 4. Leer de fichero \n 5. Salir")
     modo = int(raw_input('Escoja opcion: '))
     while modo == 0 or modo > 5:
         modo = int(raw_input("Valor no disponible, introduzca un valor entre 1 y 5: "))
@@ -128,13 +128,13 @@ def dibmarco(col):
     ''' Dibujar el marco de coordenadas horizantal (a,b,c,d,e,f,g...) '''
     for i in range(0, col):
         if i == 0:
-            print BLANK * 5,
+            print (BLANK * 5),
         else:
-            print BLANK * 2,
+            print (BLANK * 2),
         if i < col - 1:
-            print letracol[i],
+            print (letracol[i]),
         else:
-            print letracol[i]
+            print (letracol[i])
 
 
 def dibtab(fil, col, tablero):
@@ -145,23 +145,23 @@ def dibtab(fil, col, tablero):
                                    COE * 3 + CONE) * (col - 1) + COE * 3 + CON
     dibmarco(col)
     """Dibuja el tablero en pantalla"""
-    print sup
+    print (sup)
     for i in range(0, fil):
-        print letrafil[i] + BLANK,
+        print (letrafil[i] + BLANK),
         if i % 2 == 0:
-            print BLANK * 2,
+            print (BLANK * 2),
         for j in range(0, col):
-            print CNS + BLANK + tablero[i][j] + BLANK,
+            print (CNS + BLANK + tablero[i][j] + BLANK),
             if j == col - 1:
-                print CNS
+                print (CNS)
         if i % 2 == 0 and i != fil - 1:
-            print BLANK * 2 + inf
+            print (BLANK * 2 + inf)
         elif i != fil - 1:
-            print BLANK * 2 + inf2
+            print (BLANK * 2 + inf2)
         else:
             if i % 2 == 0:
-                print BLANK * 2,
-            print BLANK * 2 + cier
+                print (BLANK * 2),
+            print (BLANK * 2 + cier)
 
 
 def mina(fil, col, minas):
@@ -240,7 +240,7 @@ def jugada(fil, col, tab, tab2, minas, t1):
         for x in range(0, num):
             i, j, z = coorx1[coordenadas[0 + 3 * x]], coory1[coordenadas[1 + 3 * x]], coordenadas[2 + 3 * x]
             if i > fil + 1 or j > col + 1:
-                print "\nCoordenadas incorectas, por favor vuelva a introducir coordenadas\n"
+                print ("\nCoordenadas incorectas, por favor vuelva a introducir coordenadas\n")
             else:
                 if z == "*":
                     if primera == True and tab2[i][j] == "*":
@@ -253,16 +253,16 @@ def jugada(fil, col, tab, tab2, minas, t1):
                         tab2 = estadocelda(fil, col, tab2, tabor)
                     else:
                         if tab[i][j] == "X":
-                            print "\nNO SE PUEDE ABRIR UNA CELDA MARCADA\n"
+                            print ("\nNO SE PUEDE ABRIR UNA CELDA MARCADA\n")
                         elif tab2[i][j] == "*":
                             end = True
                         elif tab[i][j] == CSOM or tab[i][j] == BLANK:
                             tab = blancosiono(i, j, fil, col, tab2, tab, 1)
                         else:
-                            print "\nCELDA YA ABIERTA. NO SE PUEDEN ABRIR LAS CELDAS VECINAS POR NUMERO INSUFICIENTE DE MARCAS\n"
+                            print ("\nCELDA YA ABIERTA. NO SE PUEDEN ABRIR LAS CELDAS VECINAS POR NUMERO INSUFICIENTE DE MARCAS\n")
                 elif z == "!":
                     if marcas == 0:
-                        print "\nNO SE PUEDE MARCAR MAS CELDAS QUE MINAS\n"
+                        print ("\nNO SE PUEDE MARCAR MAS CELDAS QUE MINAS\n")
                     else:
                         if tab[i][j] == "X":
                             tab[i][j], tab2[i][j] = CSOM, tabor[i][j]
@@ -270,14 +270,14 @@ def jugada(fil, col, tab, tab2, minas, t1):
                             metodo(fil, col, tab, tab2)
                             minas, marcas = minas + 1, marcas + 1
                         elif tab[i][j] == BLANK:
-                            print "\nNO SE PUEDE MARCAR UNA CELDA ABIERTA\n"
+                            print ("\nNO SE PUEDE MARCAR UNA CELDA ABIERTA\n")
 
                         else:
                             tab2[i][j], tab[i][j] = "X", "X"
                             tab2, minas, marcas = estadocelda(fil, col, tab2, tabor), minas - 1, marcas - 1
                             metodo(fil, col, tab, tab2)
                 else:
-                    print "\nENTRADA ERRONEA\n"
+                    print ("\nENTRADA ERRONEA\n")
             tab2 = estadocelda(fil, col, tab2, tabor)
             primera=False
         t2 = time.time()
@@ -291,16 +291,16 @@ def jugada(fil, col, tab, tab2, minas, t1):
     dibtab(fil, col, tab)
     tabor = imptabsol(fil, col, tabor, tab)
     dibtab(fil, col, tabor)
-    print "\n\n"
+    print ("\n\n")
     menu()
 
 
 def fin(end, tiempo):
     """Mensaje de fin de programa"""
     if end is True:
-        print "\n --------------------Game over--------------------\n"
+        print ("\n --------------------Game over--------------------\n")
     else:
-        print "\n --------------------¡Enhorabuena!--------------------\n", "Ha tardado: " + tiempo + "segundos en completar el tablero"
+        print ("\n --------------------¡Enhorabuena!--------------------\n", "Ha tardado: " + tiempo + "segundos en completar el tablero")
 
 
 def blancosiono(i, j, fil, col, tab2, tab, control):
@@ -521,7 +521,7 @@ if __name__=='__main__':
     app=prueba()
     # Lanzamos el bucle de gestión de eventos
     gtk.main()
-    print "Termina el programa"
+    print ("Termina el programa")
 
 
 def main():
