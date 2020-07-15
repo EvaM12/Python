@@ -3,7 +3,7 @@
 import random
 import sys
 
-def dibTablero(tablero): #Estuctura del tablero
+def dibTablero(elTablero): #Estuctura del tablero
     lineah='   '
     for i in range(1,6):
         lineah+=(' '*9)+str(i)
@@ -14,7 +14,7 @@ def dibTablero(tablero): #Estuctura del tablero
                 espExtra=' '
             else:
                 espExtra=''
-            print('%s%s %s %s' % (espExtra, i, obtFila(tablero,i)))
+            print('%s%s %s %s' % (espExtra, i, obtFila(elTablero,i),i))
         print()
         print('   '+('0123456789'*6))
         print(lineah)
@@ -36,7 +36,7 @@ def obtNuevoTab():
                 tablero[x].append('´')
     return tablero
 
-def obtCofresAl(): #crea posiciones aleatorias de posicion del cofre
+def obtCofresAl(numCofres): #crea posiciones aleatorias de posicion del cofre
     cofres=[]
     for i in range(numCofres):
         cofres.append([random.randint(0,59), random.randint(0,14)])
@@ -149,7 +149,7 @@ while True: #configuración del juego
             extraScofre = ''
         print('Aún tienes %s dispositivos%s sonar. Falta encontrar %scofre%s.' % (dispositivosSonar, extraSsonar, len(losCofres), extraScofre))
 
-        x, y = ingresarMovidaJugador()
+        x, y = meterMov()
         movidasPrevias.append([x, y]) # debemos registrar todas las movidas para que los dispositivos sonar puedan ser actualizados.
 
         resultadoMovida = realizarMovida(elTablero, losCofres, x, y)
