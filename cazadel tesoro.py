@@ -36,7 +36,7 @@ def obtNuevoTab():
                 tablero[x].append('´')
     return tablero
 
-def obrCofresAl(): #crea posiciones aleatorias de posicion del cofre
+def obtCofresAl(): #crea posiciones aleatorias de posicion del cofre
     cofres=[]
     for i in range(numCofres):
         cofres.append([random.randint(0,59), random.randint(0,14)])
